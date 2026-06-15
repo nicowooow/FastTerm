@@ -1,0 +1,32 @@
+// creamos un componente llamado MainWindow que hereda de Window, el cual 
+// permite crear las interfaces para las aplicaiones descargables
+import {
+    Button,
+    LineEdit,
+    VerticalBox,
+    HorizontalBox,
+} from "std-widgets.slint";
+import { WriteLine } from "./components/write-line.slint";
+import { ActionList } from "./components/action-list.slint";
+import { HistoryCommand } from "./components/history-command.slint";
+import { TerminalSection } from "sections/terminal-section.slint";
+import { ActionSection } from "sections/action-section.slint";
+export component MainWindow {
+
+    preferred-width: 1000px;
+    preferred-height: 700px;
+    VerticalLayout {
+
+        padding: 10px;
+        spacing: 10px;
+
+        HorizontalLayout {
+
+            HorizontalBox {
+                ActionSection { }
+
+                TerminalSection { }
+            }
+        }
+    }
+}
