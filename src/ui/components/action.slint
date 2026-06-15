@@ -1,0 +1,12 @@
+export component Action {
+    in property <string> action;
+    in property <string> order;
+
+    Text {
+        text: order + ".- ";
+    }
+
+    Text {
+        text: action;
+    }
+}

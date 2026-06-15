@@ -1,36 +1,43 @@
 import { StyleVars } from "../../styles/styles.slint";
-import { HorizontalBox, LineEdit, Button } from "std-widgets.slint";
+import {
+    LineEdit,
+    Button,
+} from "std-widgets.slint";
 import { SendButton } from "send-button.slint";
+import { Context } from "../../global/context.slint";
+import { PathView } from "path.slint";
+import { CustomInputText } from "custom-input-text.slint";
 export component WriteLine {
-    HorizontalBox {
-
-        Text {
-            height: StyleVars.height-line-terminal;
-            text: "$";
-            letter-spacing: 2px;
-            vertical-alignment: center;
+    // traemos la ruta de donde se abre el terminal
+    callback HandleSubmit(string); // enviar el texto escrito a terminalsection
+    VerticalLayout {
+        padding: 5px;
+        PathView {
+            path: Context.path;
         }
 
-        // asi se define tipo el id o similar sera 
-        // "nombre" := "componente" , son de el nombre funcionara como referencia
-        inputLine := LineEdit {
+        HorizontalLayout {
 
-            height: StyleVars.height-line-terminal;
-            placeholder-text: "Write a command";
-            // Esta propiedad permite que se estire para ocupar
-            // todo el ancho disponible en la fila
-            horizontal-stretch: 1;
-
-            accepted => {
-                debug("Comando enviado con Enter: \{self.text}");
-                self.text = ""; // Se limpia a sí mismo
+            Text {
+                vertical-alignment: center;
+                width: StyleVars.size-line-indicator;
+                color: StyleVars.color-line-indicator;
+                text: "=> ";
             }
-        }
+            // asi se define tipo el id o similar sera 
+            // "nombre" := "componente" , son de el nombre funcionara como referencia
+            inputCommand := CustomInputText {
+                accepted => {
+                    root.HandleSubmit(self.text);
+                    self.text = ""; // Se limpia a sí mismo
+            }
+            }
 
-        SendButton {
-            HandleClick => {
-                debug("Comando enviado con CLick: \{inputLine.text}");
-                inputLine.text = "";
+            SendButton {
+                HandleClick => {
+                    root.HandleSubmit(inputCommand.text);
+                    inputCommand.text = "";
+                }
             }
         }
     }

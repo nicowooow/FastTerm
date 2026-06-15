@@ -1,10 +1,20 @@
-import { VerticalBox } from "std-widgets.slint";
+import { StyleVars } from "../../styles/styles.slint";
+import { ActionTerminal } from "./action-terminal.slint";
+import { CommandStructure } from "../../structure/command-structure.slint";
+import { Context } from "../../global/context.slint";
+import { ScrollView } from "std-widgets.slint";
 export component HistoryCommand {
+
+    in-out property <[CommandStructure]> commands <=> Context.historycommands;
+
     vertical-stretch: 1;
-    VerticalBox {
-        Text {
-            text: "Command's history";
-            font-size: 16px;
+
+    ScrollView {
+        VerticalLayout {
+            alignment: LayoutAlignment.end;
+            for command in root.commands: ActionTerminal {
+                command: command;
+            }
         }
     }
 }

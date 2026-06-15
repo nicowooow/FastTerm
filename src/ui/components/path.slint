@@ -1,0 +1,13 @@
+import { StyleVars } from "../../styles/styles.slint";
+export component PathView {
+    in property <string> path;
+    HorizontalLayout {
+        Text {
+            text: root.path;
+            horizontal-alignment: left;
+            letter-spacing: 2px;
+            vertical-alignment: center;
+            height: StyleVars.height-line-terminal;
+        }
+    }
+}

@@ -1,0 +1,45 @@
+import { CommandStructure } from "../../structure/command-structure.slint";
+import { PathView } from "path.slint";
+import { StyleVars } from "../../styles/styles.slint";
+export component ActionTerminal {
+    in property <CommandStructure> command;
+    VerticalLayout {
+        PathView {
+            path: command.path;
+        }
+
+        HorizontalLayout {
+            padding-bottom: 10px;
+            Text {
+                vertical-alignment: center;
+                color: StyleVars.color-line-indicator;
+                width: StyleVars.size-line-indicator;
+                text: "=> ";
+            }
+
+            Text {
+                horizontal-stretch: 1;
+                text: command.command;
+            }
+        }
+
+        VerticalLayout {
+            spacing: 10px;
+            padding-bottom: 10px;
+            Text {
+                horizontal-alignment: start;
+                text: " O== ";
+            }
+
+            Text {
+                text: command.result;
+            }
+
+            Text {
+
+                horizontal-alignment: start;
+                text: "==O";
+            }
+        }
+    }
+}

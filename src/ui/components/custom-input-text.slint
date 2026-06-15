@@ -1,0 +1,44 @@
+import { StyleVars } from "../../styles/styles.slint";
+export component CustomInputText {
+    in-out property <string> text <=> input.text;
+
+    callback accepted(string);
+    /* text */
+
+
+    Rectangle {
+        background: transparent;
+        height: StyleVars.height-line-terminal;
+        width: 100%;
+        horizontal-stretch: 1;
+        HorizontalLayout {
+            height: StyleVars.height-line-terminal;
+            width: 100%;
+            alignment: LayoutAlignment.start;
+            padding-left: 3px;
+            padding-right: 3px;
+            horizontal-stretch: 1;
+            // Esta propiedad permite que se estire para ocupar
+            // todo el ancho disponible en la fila
+            input := TextInput {
+                vertical-alignment: center;
+                horizontal-alignment: left;
+                height: StyleVars.height-line-terminal;
+                width: 100%;
+                color: StyleVars.color-line-indicator;
+                accepted => {
+                    root.accepted(self.text);
+                }
+            }
+        }
+
+        if input.text == "": Text {
+            text: "Write a command ... ";
+            vertical-alignment: center;
+            horizontal-alignment: left;
+            height: StyleVars.height-line-terminal;
+            // Le damos un color grisáceo o más claro para que parezca un placeholder
+            color: StyleVars.color-line-indicator.transparentize(50%);
+        }
+    }
+}
