@@ -1,0 +1,31 @@
+import { StyleVars } from "../../styles/styles.slint";
+export component SendButton inherits TouchArea {
+    callback HandleClick;
+
+    height: StyleVars.size-btn-terminal;
+    width: StyleVars.size-btn-terminal;
+
+    Rectangle {
+        width: parent.width;
+        height: parent.height;
+        border-radius: 6px;
+
+        Image {
+            source: @image-url("../../assets/send-icon.svg");
+            colorize: red;
+
+            width: parent.width;
+            height: parent.height;
+
+            // posiciones en X e Y, donde se define desde el tamaño del padre con el del objeto 
+            x: (parent.width - self.width) / 2;
+            y: (parent.height - self.height) / 2;
+
+            transform-scale-x: -1;
+        }
+    }
+
+    clicked => {
+        root.HandleClick();
+    }
+}

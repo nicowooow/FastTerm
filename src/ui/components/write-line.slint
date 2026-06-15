@@ -1,0 +1,37 @@
+import { StyleVars } from "../../styles/styles.slint";
+import { HorizontalBox, LineEdit, Button } from "std-widgets.slint";
+import { SendButton } from "send-button.slint";
+export component WriteLine {
+    HorizontalBox {
+
+        Text {
+            height: StyleVars.height-line-terminal;
+            text: "$";
+            letter-spacing: 2px;
+            vertical-alignment: center;
+        }
+
+        // asi se define tipo el id o similar sera 
+        // "nombre" := "componente" , son de el nombre funcionara como referencia
+        inputLine := LineEdit {
+
+            height: StyleVars.height-line-terminal;
+            placeholder-text: "Write a command";
+            // Esta propiedad permite que se estire para ocupar
+            // todo el ancho disponible en la fila
+            horizontal-stretch: 1;
+
+            accepted => {
+                debug("Comando enviado con Enter: \{self.text}");
+                self.text = ""; // Se limpia a sí mismo
+            }
+        }
+
+        SendButton {
+            HandleClick => {
+                debug("Comando enviado con CLick: \{inputLine.text}");
+                inputLine.text = "";
+            }
+        }
+    }
+}
