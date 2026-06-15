@@ -2,20 +2,14 @@
 // permite crear las interfaces para las aplicaiones descargables
 import { Button } from "std-widgets.slint";
 export component MainWindow inherits Window {
-    
-    width: 1000px;
-    height: 700px;
+
+    preferred-width: 1000px;
+    preferred-height: 700px;
     title: "FastTerm";
-
     VerticalLayout {
-
+        padding: 10px;
         Text {
-            text: "FastTerm";
-            font-size: 24px;
-        }
-
-        Button {
-            text: "Hola";
+            text: "Contenido de tu terminal...";
         }
     }
 }
