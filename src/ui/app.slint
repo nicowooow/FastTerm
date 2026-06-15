@@ -1,0 +1,21 @@
+// creamos un componente llamado MainWindow que hereda de Window, el cual 
+// permite crear las interfaces para las aplicaiones descargables
+import { Button } from "std-widgets.slint";
+export component MainWindow inherits Window {
+    
+    width: 1000px;
+    height: 700px;
+    title: "FastTerm";
+
+    VerticalLayout {
+
+        Text {
+            text: "FastTerm";
+            font-size: 24px;
+        }
+
+        Button {
+            text: "Hola";
+        }
+    }
+}

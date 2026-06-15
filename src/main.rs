@@ -1,3 +1,10 @@
+slint::include_modules!();
+
 fn main() {
-    println!("Hello, world!");
+    let app = MainWindow::new().unwrap();
+    // .unwrap() extrae el resultado exitoso de la compilación o detiene el programa si hubo un error.
+
+    app.run().unwrap();
+
+    // ejecutamos la aplicacion
 }
