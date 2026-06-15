@@ -1,11 +1,33 @@
 import { HistoryCommand } from "../components/history-command.slint";
 import { WriteLine } from "../components/write-line.slint";
-import { VerticalBox } from "std-widgets.slint";
+import { CommandStructure } from "../../structure/command-structure.slint";
+import { StyleVars } from "../../styles/styles.slint";
+import { Context } from "../../global/context.slint";
+
+
 export component TerminalSection {
-    VerticalBox {
 
-        HistoryCommand { }
+    callback lineCommand(string); // callback para enviar los datos a main
+    horizontal-stretch: 1;
+    VerticalLayout {
 
-        WriteLine { }
+        padding: 0px; // padding de 0
+        spacing: 5px; // espaciado entre componentes
+        Text {
+            text: "Command's history";
+            font-size: 16px;
+            height: StyleVars.height-line-terminal;
+        }
+
+        VerticalLayout {
+            spacing: 10px;
+            HistoryCommand { }
+        }
+
+        WriteLine {
+            HandleSubmit(command) => {
+                root.lineCommand(command)
+            }
+        }
     }
 }
