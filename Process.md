@@ -37,6 +37,11 @@ rustc --version
 cargo --version
 ```
 
+Install `Desarrollo para el escritorio con C++ / Desktop development with C++` from Visual Studio with:
+-  (MSVC v14x - VS C++ x64/x86 build tools)
+
+- SDK de Windows (Windows 11 SDK o Windows 10 SDK)
+- C++ CMake tools para Windows
 ## Extensions to VSCode
 
 - [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)
@@ -53,10 +58,17 @@ Your_directory
 └── src/
     └── main.rs
 ```
-- command
+- command to start project
 
 ```bash
 cargo init
 ```
+- command to run project
+
+```bash
+cargo run
+```
+
+
 
 ```bash```
