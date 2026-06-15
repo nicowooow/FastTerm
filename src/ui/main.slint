@@ -3,29 +3,27 @@
 import {
     Button,
     LineEdit,
-    VerticalBox,
-    HorizontalBox,
 } from "std-widgets.slint";
 import { WriteLine } from "./components/write-line.slint";
-import { ActionList } from "./components/action-list.slint";
 import { HistoryCommand } from "./components/history-command.slint";
 import { TerminalSection } from "sections/terminal-section.slint";
 import { ActionSection } from "sections/action-section.slint";
 export component MainWindow {
+    callback sendCommadn(string); // callback para enviar los datos a app
 
-    preferred-width: 1000px;
-    preferred-height: 700px;
+    width: 100%;
+    height: 100%;
     VerticalLayout {
-
         padding: 10px;
         spacing: 10px;
 
         HorizontalLayout {
+            ActionSection { }
 
-            HorizontalBox {
-                ActionSection { }
-
-                TerminalSection { }
+            TerminalSection {
+                lineCommand(command) => {
+                    sendCommadn(command);
+                }
             }
         }
     }

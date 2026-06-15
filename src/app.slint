@@ -1,6 +1,14 @@
 import { MainWindow } from "ui/main.slint";
+import { Context } from "./global/context.slint";
+export {Context}
 export component App inherits Window {
+    callback saveCommand(string); // callback para enviar los datos a rust
     title: "FastTerm";
-
-    MainWindow { }
+    preferred-width: 1000px;
+    preferred-height: 700px;
+    MainWindow {
+        sendCommadn(command) => {
+            saveCommand(command);
+        }
+    }
 }
