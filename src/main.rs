@@ -6,7 +6,7 @@ fn main() {
     //     std::env::set_var("SLINT_BACKEND", "software");
     // }
 
-    let app = MainWindow::new().unwrap();
+    let app = App::new().unwrap();
     // .unwrap() extrae el resultado exitoso de la compilación o detiene el programa si hubo un error.
 
     app.run().unwrap();
